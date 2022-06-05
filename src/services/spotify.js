@@ -54,3 +54,17 @@ export const skipToPrevious = () => {
 export const skipToNext = () => {
   return spotifyApi.skipToNext();
 };
+
+//Compare two playlists input by the user.
+export const comparePlaylists = (playlist1, playlist2) => {
+  return spotifyApi.getPlaylist(playlist1.owner.id, playlist1.id).then((res) => {
+    const playlist1Tracks = res.tracks.items.map((item) => item.track);
+    return spotifyApi.getPlaylist(playlist2.owner.id, playlist2.id).then((res) => {
+      const playlist2Tracks = res.tracks.items.map((item) => item.track);
+      return {
+        playlist1: playlist1Tracks,
+        playlist2: playlist2Tracks,
+      };
+    });
+  });
+}
