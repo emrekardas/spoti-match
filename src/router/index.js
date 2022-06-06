@@ -4,6 +4,7 @@ import TopTracks from "@/views/top-tracks.vue";
 import Recent from "@/views/recent.vue";
 import Home from "@/views/home.vue";
 import Playlists from "@/views/playlists.vue";
+import Compare from "@/views/compare.vue";
 
 const routes = [
   {
@@ -40,6 +41,14 @@ const routes = [
       requiresAuth: true,
     },
   },
+
+  {
+    path: "/compare",
+    component: Compare,
+    meta: {
+      requiresAuth: true,
+    },
+  }
 ];
 
 const router = createRouter({
