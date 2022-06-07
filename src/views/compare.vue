@@ -1,38 +1,33 @@
 <template>
-  <Hero title="Top Tracks" :image="image" />
+  <Hero title="Compare" :image="image" />
 
   <div class="right-section-content">
-    <Times @change="onChangeTab" />
-
-    <div class="list-items">
-      <Item
-        :data="{ ...track, index, type: 'track' }"
-        v-for="(track, index) in tracks"
-        :key="track.id"
-      />
-    </div>
+    <input type="url"/>
   </div>
+  <div class="left-section-content">
+    <input type="url"/>
+  </div>
+  <Button text="Compare" @click="comparePlaylist" />
+
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
-import { getMyTopTracks } from "@/services/spotify";
-import Times from "@/components/times.vue";
-import Item from "@/components/item.vue";
+import Button from "@/components/button";
 import Hero from "@/components/hero.vue";
 
 const image = require("@/assets/images/hero-4.png");
-const tracks = ref([]);
-
-onMounted(() => {
-  getMyTopTracks('long_term').then((res) => {
-    tracks.value = res.items;
-  });
-});
-
-const onChangeTab = (activeTab) => {
-  getMyTopTracks(activeTab).then((res) => {
-    tracks.value = res.items;
-  });
-};
 </script>
+
+<style scoped>
+
+input {
+  display :flexbox;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  height: 35px;
+  width: 50%;
+}
+</style>
